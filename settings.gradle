@@ -1,0 +1,13 @@
+include ':module_base'
+include ':fun_splash'
+include ':export_biz_msg'
+include ':export_biz_home'
+include ':export_biz_me'
+include ':fun_share'
+include ':biz_msg'
+include ':biz_me'
+include ':biz_home'
+include ':module_util'
+include ':module_common'
+include ':app'
+rootProject.name = "ModularLearning"

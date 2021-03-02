@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sun.biz_home">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/home_app_name"
+        android:supportsRtl="true"
+        android:theme="@style/home_AppTheme">
+        <activity android:name=".debug.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

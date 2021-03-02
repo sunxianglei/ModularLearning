@@ -1,0 +1,67 @@
+apply plugin: 'maven'
+def POM_NAME = 'common'
+def POM_VERSION = '1.0.0'
+def POM_ARTIFACT_ID = 'module_common'
+def POM_GROUP_ID = 'com.sun.module'
+def POM_PACKAGING = 'aar'
+def POM_DESC = 'common module for learning mudular'
+def USERNAME = 'admin'
+def PASSWORD = 'admin123'
+def REPOSITORY_URL = 'http://localhost:8081/repository/sun/'
+def REPOSITORY_URL_SNAPSHOT = 'http://localhost:8081/repository/sun-snapshot/'
+
+def getPomVersion(pomVersion) {
+    String version = pomVersion
+    if(isSnapshot.toBoolean()) {
+        version += "-SNAPSHOT"
+    }
+    return version
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            snapshotRepository(url: REPOSITORY_URL_SNAPSHOT) {
+                authentication(userName: USERNAME, password: PASSWORD)
+            }
+            repository(url: REPOSITORY_URL) {
+                authentication(userName: USERNAME, password: PASSWORD)
+            }
+            pom.project {
+                version getPomVersion(POM_VERSION)
+                artifactId POM_ARTIFACT_ID
+                groupId POM_GROUP_ID
+                packaging POM_PACKAGING
+            }
+        }
+    }
+}
+
+//生成文档注释
+task androidJavadocs(type: Javadoc) {
+    failOnError = false
+    source = android.sourceSets.main.java.getSrcDirs()
+    ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+    classpath += files(ext.androidJar)
+}
+//将文档打包成jar
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+//将源码打包
+task androidSourcesJar(type: Jar) {
+    if (project.hasProperty("kotlin")) {
+        from android.sourceSets.main.java.getSrcDirs()
+    } else if (project.hasProperty("android")) {
+        from android.sourceSets.main.java.sourceFiles
+    } else {
+        println project
+        from sourceSets.main.allSource
+    }
+    classifier = 'sources'
+}
+//包含文档和源码的aar
+artifacts {
+    archives androidSourcesJar
+}

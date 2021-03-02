@@ -1,0 +1,25 @@
+ext {
+    dependencies = [
+            "glide": "com.github.bumptech.glide:glide:4.12.0",
+            "glide-compiler": "com.github.bumptech.glide:compiler:4.12.0",
+            "okhttp3": "com.squareup.okhttp3:okhttp:4.9.0",
+            "retrofit": "com.squareup.retrofit2:retrofit:2.9.0",
+            "retrofit-converter-gson"  : "com.squareup.retrofit2:converter-gson:2.9.0",
+            "retrofit-adapter-rxjava2" : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+            "rxjava2": "io.reactivex.rxjava2:rxjava:2.2.21",
+            "arouter": "com.alibaba:arouter-api:1.5.1",
+            "arouter-compiler": "com.alibaba:arouter-compiler:1.5.1",
+            // our lib
+            "module_util": "com.sun.module:module_util:1.0.0",
+            "module_common": "com.sun.module:module_common:1.0.0",
+            "module_base": "com.sun.module:module_base:1.0.0",
+            "fun_splash": "com.sun.fun:fun_splash:1.0.0",
+            "fun_share": "com.sun.fun:fun_share:1.0.0",
+            "export_biz_home": "com.sun.export:export_biz_home:1.0.0",
+            "export_biz_me": "com.sun.export:export_biz_me:1.0.0",
+            "export_biz_msg": "com.sun.export:export_biz_msg:1.0.0",
+            "biz_home": "com.sun.biz:biz_home:1.0.0",
+            "biz_me": "com.sun.biz:biz_me:1.0.0",
+            "biz_msg": "com.sun.biz:biz_msg:1.0.0"
+    ]
+}
